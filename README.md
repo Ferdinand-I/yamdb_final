@@ -1,6 +1,6 @@
 # Проект API Yamdb.
 
-![](https://github.com/Ferdinand-I/yamdb_final/actions/workflows/main.yml/badge.svg?event=push)
+![Workflow badge](https://github.com/Ferdinand-I/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
 
 Проект API yamdb предоставляет методы для работы с ресурсом.
 
