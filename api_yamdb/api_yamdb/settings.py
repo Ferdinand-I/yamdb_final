@@ -9,7 +9,7 @@ dotenv_path = os.path.join(os.path.dirname(BASE_DIR), 'infra/.env')
 load_dotenv(dotenv_path)
 
 
-SECRET_KEY = os.getenv('SECRET_KEY', 'defaultkey')
+SECRET_KEY = ')@*sm*joqe4&+okpw#xozp!1)39-hi&p_$(jz8kqdem@d%1y*d'
 
 DEBUG = False
 
