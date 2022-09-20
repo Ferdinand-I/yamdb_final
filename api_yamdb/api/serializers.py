@@ -1,11 +1,11 @@
-from rest_framework import serializers
-from django.shortcuts import get_object_or_404
 from django.core.exceptions import ValidationError
+from django.shortcuts import get_object_or_404
 from django.utils import timezone
+from rest_framework import serializers
 
 from reviews.models import (
-    User, ROLES, Review, Comments,
-    Title, Genre, Category
+    Category, Comments, Genre,
+    Review, ROLES, Title, User
 )
 
 
@@ -139,10 +139,10 @@ class TitleReadSerializer(serializers.ModelSerializer):
                   'description', 'genre', 'category')
         model = Title
 
-    def validate_year(value):
+    def validate_year(self, value):
         if value > timezone.now().year:
             raise ValidationError(
-                ('Год %(value)s больше текущего!'),
+                'Год %(value)s больше текущего!',
                 params={'value': value},
             )
 
