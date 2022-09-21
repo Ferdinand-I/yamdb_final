@@ -56,19 +56,20 @@ get_random_secret_key()
 
 
 ```bash
-docker compose up
+docker-compose up
 ```
 
 Выполняем миграции:
 
 ```bash
-docker compose exec web python manage.py migrate
+docker-compose exec web python manage.py makemigrations reviews
+docker-compose exec web python manage.py migrate
 ```
 
 Для доступа в админку создаём суперпользователя:
 
 ```bash
-docker compose exec web python manage.py createsuperuser
+docker-compose exec web python manage.py createsuperuser
 ```
 
 Собираем статику:
