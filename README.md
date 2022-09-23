@@ -62,7 +62,7 @@ docker-compose up
 Выполняем миграции:
 
 ```bash
-docker-compose exec web python manage.py makemigrations reviews
+docker-compose exec web python manage.py makemigrations
 docker-compose exec web python manage.py migrate
 ```
 
