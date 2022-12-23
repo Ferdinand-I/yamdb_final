@@ -1,41 +1,56 @@
-# Проект API Yamdb.
+# Проект API Yamdb <img src="https://static.vecteezy.com/system/resources/previews/000/496/671/original/chat-icon-design-vector.jpg" width=48>
 
 ![Workflow badge](https://github.com/Ferdinand-I/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
 
-Проект API yamdb предоставляет методы для работы с ресурсом.
+Проект **API Yamdb** предоставляет API методы для работы с ресурсом. Это совместный проект, реализованный с помощью **Git**
 
-Подробная документация доступна [здесь](http://158.160.6.0/redoc/).
+Основные технологии, использованные в проекте:
+* **Python 3.7**
+* **Django 2.2.16**
+* **Django REST Framework 3.12.4**
 
-### Основные технологии, использованные в проекте:
+Основные фичи технической реализации:
+* Подключение БД PostgreSQL
+* Написание скрипты **manage**-команды для заполнения БД из файлов *csv*
+* Кастомная модель для регистрации новых пользователей, наследованная от встроенной **Django**-модели AbstractUser. Плюс к расширяемости и изменяемости проекта
+* Валидация данных на уровне **Django ORM**
+* Описание моделей на базе кастомных абстрактных моделей
+* Подключение бэкенда для отправки *e-mail*
+* Кастомная аутентификация пользователей с помощью **JWT**-токена с отправкой кода подтверждения на *e-mail*
+* Настройка *extra actions* для вью функций
+* Описание кастомных пермишенов на базе **BasePermissions** из модуля *rest_framework.permissions*
+* Описание кастомных фильтров на базе **FilterSet** из модуля *django_filters.rest_framework*
+* Валидация полей сериализаторов
+* Агрегация данных полей сериализаторов
+* Развёртывание инфраструктуры проекта с помощью контейнеров **Docker**
+* Автоматизация процессов тестирования, сборки и пуша на **DockerHub**, деплоя и оповещения в *Telegram* с помощью технологий **Git Workflow**
 
-```text
-Python 3.7
-Django 2.2.16
-Django REST Framework 3.12.4
+Как запустить:
+
+*Приложение запускается в контейнерах Docker, поэтому вам пондобится установленный [docker](https://www.docker.com/)*
+
+1. Клонируйте репозиторий себе на компьютер, находясь в директории, откуда вы хотите в будущем запускать проект (в примере испоьзуется ссылка для подключения с помощью протокола **SSH** в консоли **BASH** для **WINDOWS**)
+
+```BASH
+git clone git@github.com:Ferdinand-I/yamdb_final.git
 ```
 
+2. Перейдите в директорию *infra*
 
-### Как запустить:
-
-Клонируем репозиторий на компьютер и переходим в директорию 
-<b style="color:green">infra</b>:
-
-```bash
-git clone git@github.com:Ferdinand-I/yamdb_final.git
+```BASH
 cd infra
 ```
-Приложение упаковано в docker контейнеры, поэтому вам пондобится
-установленный [docker](https://www.docker.com/).
 
-Но прежде создайте .env файл:
+3. Создайте *.env* файл и откройте его любым текстовым редактором, например, консольным nano
 
-```bash
+```BASH
 touch .env
+nano .env
 ```
 
-И отредактируйте его по шаблону:
+4. Отредактируйте его по шаблону
 
-```text
+```nano
 DB_ENGINE=django.db.backends.postgresql
 DB_NAME=postgres
 POSTGRES_USER=postgres
@@ -43,47 +58,49 @@ POSTGRES_PASSWORD=<ваш пароль>
 DB_HOST=db
 DB_PORT=5432
 SECRET_KEY=<django secret key>
-
-```
-Секретный ключ джанго можно сгенерировать с помощью встроенной утилиты:
-
-```python
-from django.core.management.utils import get_random_secret_key  
-get_random_secret_key()
 ```
 
-После этого запускает docker compose:
+> **Django SECRET-KEY** можно сгенерировать с помощью встроенной утилиты:
 
+> ```python
+> from django.core.management.utils import get_random_secret_key  
+> get_random_secret_key()
+> ```
 
-```bash
+5. Запустите сценарий **docker compose**:
+
+```BASH
 docker-compose up
 ```
 
-Выполняем миграции:
+6. Выполните миграции внутри контейнера с приложением **Python**
 
-```bash
+```BASH
 docker-compose exec web python manage.py makemigrations
 docker-compose exec web python manage.py migrate
 ```
 
-Для доступа в админку создаём суперпользователя:
+7. Создайте суперпользователя для доступа в админку
 
-```bash
+```BASH
 docker-compose exec web python manage.py createsuperuser
 ```
 
-Собираем статику:
+8. Соберите статику
 
-```bash
+```BASH
 docker-compose exec web python manage.py collectstatic
 ```
 
-Загружаем фикстуры БД из csv-файлов:
+9. Загрузите фикстуры БД из csv-файлов с помощью кастомной manage команды
 
-```bash
+```BASH
 docker-compose exec web python manage.py loadfixtures
 ```
 
 Проект доступен к изучению по адресу http://127.0.0.1/
 
-Автор проекта Антон Борисов, студент 34 когорты Яндекс.Практикум.
+Ссылки на репозитории авторов проекта:
+* <a href="https://github.com/Ferdinand-I">Антон Борисов</a>
+* <a href="https://github.com/xHYSTERIAx">Анастасия Жалненкова</a>
+* <a href="https://github.com/ToxicAv3ng3r">Toxic Avenger</a>
