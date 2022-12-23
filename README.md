@@ -70,20 +70,20 @@ SECRET_KEY=<django secret key>
 5. Запустите сценарий **docker compose**:
 
 ```BASH
-docker-compose up
+docker compose up
 ```
 
 6. Выполните миграции внутри контейнера с приложением **Python**
 
 ```BASH
-docker-compose exec web python manage.py makemigrations
-docker-compose exec web python manage.py migrate
+docker compose exec web python manage.py makemigrations
+docker compose exec web python manage.py migrate
 ```
 
 7. Создайте суперпользователя для доступа в админку
 
 ```BASH
-docker-compose exec web python manage.py createsuperuser
+docker compose exec web python manage.py createsuperuser
 ```
 
 8. Соберите статику
@@ -95,10 +95,12 @@ docker-compose exec web python manage.py collectstatic
 9. Загрузите фикстуры БД из csv-файлов с помощью кастомной manage команды
 
 ```BASH
-docker-compose exec web python manage.py loadfixtures
+docker compose exec web python manage.py loadfixtures
 ```
 
 Проект доступен к изучению по адресу http://127.0.0.1/
+
+<a href="http://127.0.0.1/redoc/">Документация</a> с описанием методов
 
 Ссылки на репозитории авторов проекта:
 * <a href="https://github.com/Ferdinand-I">Антон Борисов</a>
