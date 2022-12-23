@@ -38,7 +38,7 @@ git clone git@github.com:Ferdinand-I/yamdb_final.git
 2. Перейдите в директорию *infra*
 
 ```BASH
-cd infra
+cd yamdb_final/infra/
 ```
 
 3. Создайте *.env* файл и откройте его любым текстовым редактором, например, консольным nano
